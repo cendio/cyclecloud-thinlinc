@@ -46,7 +46,7 @@ Prepare the credentials to access the blob container associated with the locker:
   matches = az://cendiocyclecloud/cyclecloud
   ```
 
-  _You can locate your Subscription ID using the Azure CLI (`az` command) to list the accounts:_ `az account list -o table`
+  *You can locate your Subscription ID using the Azure CLI (`az` command) to list the accounts:* `az account list -o table`
 
 * Your `~/.cycle/config.ini` should now look something like this
 
@@ -83,6 +83,8 @@ Prepare the credentials to access the blob container associated with the locker:
   ```
 
 ### 1.3 Create a new Cluster with the Thinlinc Project
+
+*Note: /tempplates/signle-nodearray_teampate_1.0.0.2.txt is a sample signle nodearray cluster template, please make the necessary adjustment when using it.* 
 
 Having uploaded the Thinlinc project into the CycleCloud locker, you can now create a new cluster in CycleCloud and specify that each node should use the `cyclecloud-thinlinc:default` spec. 
 
