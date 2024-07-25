@@ -35,6 +35,11 @@ Category = Infrastructure
         PublicPort = 443
         Protocol = tcp
 
+        [[[configuration]]]
+        thinlinc.enable_web = $EnableWeb
+        thinlinc.web_port = $WebPort
+        thinlinc.connection_mode = $ConnectionMode
+
         [[[cluster-init cyclecloud-thinlinc:default:1.0.1]]]
 
     [[nodearray login]]
@@ -131,6 +136,28 @@ Order = 20
         DefaultValue = =undefined
         Description = Cluster init specs to apply to the node
         ParameterType = Cloud.ClusterInitSpecs	
+
+    [[parameters Thinlinc]]
+        [[[parameter EnableWeb]]]
+        Label = Enable Web Interface
+        DefaultValue = false
+        ParameterType = Boolean
+        Config.Label = Enable HTML Remote Desktop 
+
+        [[[parameter WebPort]]]
+        Label = Web Port
+        Description = Web Port to connect to the Web Interface²
+        DefaultValue = 443
+        ParameterType = Integer
+        Conditions.Excluded := EnableWeb isnt true
+
+        [[[parameter ConnectionMode]]]
+        Label = Connection Mode
+        ParameterType = StringList
+        Config.Label = The connection mode from the client
+        Config.Plugin = pico.form.Dropdown
+        Config.Entries := {[Label="Private IP"; Value="private_ip"], [Label="Public IP"; Value="public_ip"], [Label="SSH Tunnel"; Value="ssh_tunnel"]}
+        DefaultValue = private_ip
 
     [[parameters Advanced Networking]]
     Description = Advanced networking settings
